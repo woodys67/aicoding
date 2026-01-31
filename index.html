@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Woody Song - Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 60px 45px;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-in forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.4s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+        .section:nth-child(5) { animation-delay: 0.8s; }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding-bottom: 40px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .hero h1 {
+            color: #2d3748;
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3em;
+            color: #764ba2;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .hero .tagline {
+            font-size: 1.1em;
+            color: #4a5568;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Section Headings */
+        h2 {
+            color: #2d3748;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        /* About Section */
+        .about-content {
+            color: #4a5568;
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        /* Experience Section */
+        .experience-item {
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+            background: rgba(102, 126, 234, 0.08);
+        }
+
+        .experience-item h3 {
+            color: #2d3748;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .experience-item .duration {
+            color: #764ba2;
+            font-size: 1em;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .experience-item .description {
+            color: #4a5568;
+            font-size: 1.05em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .experience-item .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        /* Education Section */
+        .education-content {
+            background: rgba(118, 75, 162, 0.05);
+            border-radius: 20px;
+            padding: 25px 30px;
+            border-left: 5px solid #764ba2;
+        }
+
+        .education-content .university {
+            color: #2d3748;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .skill-category h3 {
+            color: #2d3748;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skill-category li {
+            color: #4a5568;
+            font-size: 1em;
+            line-height: 1.8;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .skill-category li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+                max-height: 95vh;
+            }
+
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1em;
+            }
+
+            .hero .tagline {
+                font-size: 1em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .experience-item {
+                padding: 25px 20px;
+            }
+
+            .experience-item h3 {
+                font-size: 1.2em;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+        }
+
+        /* Scrollbar Styling */
+        .container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .container::-webkit-scrollbar-track {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+        }
+
+        .container::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+        }
+
+        .container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero section">
+            <h1>Woody Song</h1>
+            <div class="subtitle">Developer & Product Planner</div>
+            <div class="tagline">기술과 전략을 연결하는 개발자</div>
+        </section>
+
+        <!-- About Me Section -->
+        <section class="about section">
+            <h2>About Me</h2>
+            <div class="about-content">
+                개발자와 기획자로서 각 1년의 경력을 바탕으로, 기술적 구현과 전략적 사고를 모두 이해하는 독특한 관점을 가지고 있습니다.
+                경북대학교 출신으로, 사용자 중심의 기술 솔루션을 만드는 것을 목표로 합니다.
+                코드를 작성하는 것뿐만 아니라 제품의 방향성을 설계하고 사용자 경험을 개선하는 데 열정을 가지고 있습니다.
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience section">
+            <h2>Experience</h2>
+
+            <div class="experience-item">
+                <h3>개발 경력 (Development)</h3>
+                <div class="duration">1년</div>
+                <div class="description">
+                    웹 개발을 중심으로 사용자 인터페이스 구현과 프론트엔드 개발 경험을 쌓았습니다.
+                    깨끗하고 유지보수 가능한 코드를 작성하는 것을 중요하게 생각하며,
+                    사용자 친화적인 웹 애플리케이션을 만드는 데 집중해왔습니다.
+                </div>
+                <div class="tech-tags">
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Git</span>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <h3>기획 경력 (Planning)</h3>
+                <div class="duration">1년</div>
+                <div class="description">
+                    제품 기획 및 전략 수립을 통해 비즈니스 요구사항과 기술적 실현 가능성 사이의 균형을 맞추는 경험을 쌓았습니다.
+                    사용자 조사와 데이터 분석을 기반으로 제품의 방향성을 제시하고,
+                    개발팀과의 원활한 커뮤니케이션을 통해 프로젝트를 성공적으로 이끌어왔습니다.
+                </div>
+                <div class="tech-tags">
+                    <span class="tech-tag">Product Strategy</span>
+                    <span class="tech-tag">Documentation</span>
+                    <span class="tech-tag">User Research</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="education section">
+            <h2>Education</h2>
+            <div class="education-content">
+                <div class="university">경북대학교 (Kyungpook National University)</div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills section">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Development</h3>
+                    <ul>
+                        <li>HTML/CSS/JavaScript</li>
+                        <li>Web Development</li>
+                        <li>Git/Version Control</li>
+                        <li>Responsive Design</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Planning</h3>
+                    <ul>
+                        <li>Product Strategy</li>
+                        <li>User Research</li>
+                        <li>Documentation</li>
+                        <li>Agile Methodologies</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Smooth scroll behavior for the container
+        document.querySelector('.container').style.scrollBehavior = 'smooth';
+
+        // Optional: Add intersection observer for scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize page
+        window.onload = function() {
+            console.log('Portfolio loaded successfully');
+        };
+    </script>
+</body>
+</html>
